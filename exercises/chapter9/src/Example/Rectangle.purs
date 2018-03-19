@@ -3,6 +3,7 @@ module Example.Rectangle where
 import Prelude
 
 import Control.Monad.Eff (Eff)
+import Data.Int (fromNumber, toNumber, fromString, floor)
 import Data.Maybe (Maybe(..))
 import Graphics.Canvas (CANVAS, rect, fillPath, setFillStyle, getContext2D,
                           getCanvasElementById)
@@ -60,6 +61,6 @@ main = void $ unsafePartial do
                    , h: 100.0
                    }
 
-  renderPath ctx ({ x: 10.0, y: 20.0 } : { x: 30.0, y: 49.0 } : { x: 10.0, y: 60.0 } : Nil )
+  _ <- renderPath ctx ({ x: 10.0, y: 20.0 } : { x: 30.0, y: 49.0 } : { x: 10.0, y: 60.0 } : Nil )
 
-       --renderPath ctx $ f <$> 1.0 .. 500.0
+ renderPath ctx $ f <$> (map fromInt (1 .. 500))
